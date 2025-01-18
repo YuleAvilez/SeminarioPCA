@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>DarkNet Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding horror-theme">
+  <!-- Imagen de Usuario -->
+  <div class="avatar-container">
+    <ion-avatar>
+      <img
+        alt="User Avatar"
+        src="https://ionicframework.com/docs/img/demos/avatar.svg"
+        class="user-avatar"
+      />
+    </ion-avatar>
+  </div>
+
+  <form [formGroup]="loginForm" class="login-form">
+    <ion-item class="horror-input">
+      <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+      <ion-input
+        label="Email"
+        labelPlacement="floating"
+        placeholder="example@gmail.com"
+        formControlName="email">
+      </ion-input>
+    </ion-item>
+    <!-- Errores de Email -->
+    <div class="error-messages">
+      <ng-container *ngFor="let error of emailErrors.email">
+        <ion-label color="danger" *ngIf="(loginForm.get('email')?.hasError(error.type) && loginForm.get('email')?.dirty)">
+          {{ error.message }}
+        </ion-label>
+      </ng-container>
+    </div>
+
+    <!-- Password Input -->
+    <ion-item class="horror-input">
+      <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+      <ion-input
+        label="Password"
+        labelPlacement="floating"
+        type="password"
+        placeholder="******"
+        formControlName="password">
+      </ion-input>
+    </ion-item>
+    <!-- Errores de Password -->
+    <div class="error-messages">
+      <ng-container *ngFor="let error of passwordErrors.password">
+        <ion-label color="danger" *ngIf="(loginForm.get('password')?.hasError(error.type) && loginForm.get('password')?.dirty)">
+          {{ error.message }}
+        </ion-label>
+      </ng-container>
+    </div>
+
+    <ion-button expand="block" color="tertiary" type="submit" [disabled]="!loginForm.valid" class="login-button">
+      🎮 Enter Game 🎮
+    </ion-button>
+  </form>
+</ion-content>
