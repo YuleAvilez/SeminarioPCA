@@ -16,7 +16,7 @@
     </ion-avatar>
   </div>
 
-  <form [formGroup]="loginForm" class="login-form">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="login-form">
     <ion-item class="horror-input">
       <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
       <ion-input
@@ -56,7 +56,10 @@
     </div>
 
     <ion-button expand="block" color="tertiary" type="submit" [disabled]="!loginForm.valid" class="login-button">
-      🎮 Enter Game 🎮
+      🎮 Login 🎮
     </ion-button>
   </form>
+
+  <p>{{errorMessage}}</p>
+  
 </ion-content>
