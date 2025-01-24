@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 import { HomePageRoutingModule } from './home-routing.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'; //importamos el CUSTOM_ELEMENTS_SCHEMA para evitar error en el html
 
 
 @NgModule({
@@ -15,6 +16,6 @@ import { HomePageRoutingModule } from './home-routing.module';
     HomePageRoutingModule
   ],
   declarations: [HomePage],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas : [CUSTOM_ELEMENTS_SCHEMA] // añadimos el CUSTOM_ELEMENTS_SCHEMA
 })
 export class HomePageModule {}

@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>DarkNet Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content class="ion-padding horror-theme">
   <!-- Imagen de Usuario -->
@@ -28,7 +24,7 @@
     </ion-item>
     <!-- Errores de Email -->
     <div class="error-messages">
-      <ng-container *ngFor="let error of emailErrors.email">
+      <ng-container *ngFor="let error of FormErros.email">
         <ion-label color="danger" *ngIf="(loginForm.get('email')?.hasError(error.type) && loginForm.get('email')?.dirty)">
           {{ error.message }}
         </ion-label>
@@ -48,7 +44,7 @@
     </ion-item>
     <!-- Errores de Password -->
     <div class="error-messages">
-      <ng-container *ngFor="let error of passwordErrors.password">
+      <ng-container *ngFor="let error of FormErros.password">
         <ion-label color="danger" *ngIf="(loginForm.get('password')?.hasError(error.type) && loginForm.get('password')?.dirty)">
           {{ error.message }}
         </ion-label>
@@ -61,5 +57,9 @@
   </form>
 
   <p>{{errorMessage}}</p>
-  
-</ion-content>
+
+  <div class="additional-links">
+    <a href="/register" class="registro">REGISTRO</a>
+    <h5 class="forgot-password">¿Olvidaste la contraseña?</h5>
+  </div>
+  </ion-content>
