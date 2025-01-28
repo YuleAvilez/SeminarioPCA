@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';// importamos para hacer el formulario
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -43,9 +44,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   loginUser(credentials: any){
-    this.authService.login(credentials).then(res =>{
+    this.authService.login(credentials).then((res: any) => {
       console.log(res);
       this.errorMessage = '';
+      this.storage.set('user', res.user);
       this.storage.set('isUserloggeIn', true);
       this.navCrtl.navigateForward('/menu/home');
     }).catch(err =>{
