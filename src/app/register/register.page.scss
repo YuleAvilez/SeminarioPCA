@@ -57,19 +57,8 @@
   .btnRegistro {
     margin-top: 20px;
     text-align: center;
-  }
-
-  .login-button {
-    color: rgb(0, 0, 0);
-    text-transform: uppercase;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(72, 0, 255, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .login-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(88, 91, 255, 0.8);
+    color: white;
+    background-color: 0 0 20px rgba(212, 0, 255, 0.5) ;
   }
 
   .retroceso {
@@ -78,6 +67,9 @@
     margin-top: 10px;
     display: inline-block;
     font-size: 1.2rem;
+  }
 
-    
+  .Registro{
+    color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
   }
