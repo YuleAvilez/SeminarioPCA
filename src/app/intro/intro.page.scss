@@ -1,12 +1,81 @@
-swiper-container{
-  width: 100%;
-  height: 100%;
-  background-image: url('https://i.pinimg.com/736x/47/68/22/4768220eda2bdf16308f85bc566d46f7.jpg');
-}
-
-swiper-slide{
+/* ----- General Styles ----- */
+ion-content {
+  --background: rgba(41, 11, 66, 0.8);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
+
+
+swiper-container {
+  width: 100%;
+  height: auto;
+  padding: 20px 0;
+}
+
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-card {
+  background: rgba(25, 10, 40, 0.9);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ion-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(157, 0, 255, 0.6);
+}
+
+ion-card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 3px solid rgba(157, 0, 255, 0.4);
+}
+
+ion-card-header {
+  text-align: center;
+  color: white;
+}
+
+ion-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #9d00ff;
+}
+
+ion-card-subtitle {
+  font-size: 1rem;
+  color: #bbb;
+}
+
+ion-card-content {
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+ion-button {
+  width: 100%;
+  margin-top: 10px;
+  --background: #9d00ff;
+  --color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(157, 0, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ion-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(157, 0, 255, 0.8);
+}
+

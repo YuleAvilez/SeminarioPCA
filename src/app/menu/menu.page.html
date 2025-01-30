@@ -2,7 +2,7 @@
   <ion-menu contentId="content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Menu</ion-title>
+        <ion-title>Menú</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="closeMenu()">
             <ion-icon name="arrow-back-outline"></ion-icon>
@@ -10,11 +10,36 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
+
     <ion-content>
-      <ion-item (click)="log_out()">
-        Cerrar sesión <ion-icon name="log-out-outline"></ion-icon>
+      <ion-list>
+        <ion-item routerLink="/menu/home" routerDirection="root">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          Inicio
+        </ion-item>
+
+        <ion-item routerLink="/menu/account" routerDirection="root">
+          <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+          Mi Cuenta
+        </ion-item>
+
+        <ion-item routerLink="/menu/search-users" routerDirection="root">
+          <ion-icon slot="start" name="search-outline"></ion-icon>
+          Buscar Usuarios
+        </ion-item>
+
+        <ion-item routerLink="/intro" routerDirection="root">
+          <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+          Introducción
+        </ion-item>
+      </ion-list>
+
+      <ion-item class="logout-btn" (click)="log_out()">
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+        Cerrar sesión
       </ion-item>
     </ion-content>
   </ion-menu>
+
   <ion-router-outlet id="content"></ion-router-outlet>
 </ion-split-pane>
