@@ -23,7 +23,7 @@ ion-menu {
   }
   
   ion-item {
-    --background: transparent;
+    --background: rgba(41, 11, 66, 0.8);
     color: white;
     font-size: 1.1rem;
     font-weight: 500;
@@ -43,7 +43,7 @@ ion-menu {
   }
   
   .logout-btn {
-    background: rgba(255, 0, 0, 0.7);
+    --background: rgba(255, 0, 0, 0.7) !important;
     color: white;
     font-weight: bold;
     text-align: center;

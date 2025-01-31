@@ -13,28 +13,28 @@
 
     <ion-content>
       <ion-list>
-        <ion-item routerLink="/menu/home" routerDirection="root">
+        <ion-item routerLink="/menu/home" routerDirection="root" (click)="closeMenu()">
           <ion-icon slot="start" name="home-outline"></ion-icon>
           Inicio
         </ion-item>
 
-        <ion-item routerLink="/menu/account" routerDirection="root">
+        <ion-item routerLink="/menu/account" routerDirection="root" (click)="closeMenu()">
           <ion-icon slot="start" name="person-circle-outline"></ion-icon>
           Mi Cuenta
         </ion-item>
 
-        <ion-item routerLink="/menu/search-users" routerDirection="root">
+        <ion-item routerLink="/menu/search-users" routerDirection="root" (click)="closeMenu()">
           <ion-icon slot="start" name="search-outline"></ion-icon>
           Buscar Usuarios
         </ion-item>
 
-        <ion-item routerLink="/intro" routerDirection="root">
+        <ion-item routerLink="/intro" routerDirection="root" (click)="closeMenu()">
           <ion-icon slot="start" name="information-circle-outline"></ion-icon>
           Introducción
         </ion-item>
       </ion-list>
 
-      <ion-item class="logout-btn" (click)="log_out()">
+      <ion-item class="logout-btn" (click)="log_out(); closeMenu()">
         <ion-icon slot="start" name="log-out-outline"></ion-icon>
         Cerrar sesión
       </ion-item>

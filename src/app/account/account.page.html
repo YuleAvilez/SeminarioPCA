@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <ion-title>Mi cuenta</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,6 +9,8 @@
 
 <ion-content>
   <div class="account-container">
+    
+    <!-- Nombre y Avatar -->
     <h1 class="account-name">
       {{ user_data.name }} {{ user_data.last_name }}
     </h1>
@@ -19,10 +22,29 @@
       />
     </ion-avatar>
 
+    <!-- Información del usuario -->
     <div class="account-info">
-      <p><strong>Usuario:</strong> {{ user_data.username }}</p>
+      <p><strong>Usuario:</strong> 
+        <span *ngIf="!isEditingUsername">{{ user_data.username }}</span>
+        
+        <!-- Input para editar el usuario -->
+        <ion-input 
+          *ngIf="isEditingUsername" 
+          [(ngModel)]="newUsername" 
+          placeholder="Nuevo usuario">
+        </ion-input>
+      </p>
+      
       <p><strong>Seguidores:</strong> {{ user_data.followers.length }}</p>
       <p><strong>Siguiendo:</strong> {{ user_data.followees.length }}</p>
+      
+      <!-- Botones de Editar/Guardar -->
+      <div class="edit-buttons">
+        <ion-button *ngIf="!isEditingUsername" (click)="startEditing()">Editar Usuario</ion-button>
+        <ion-button *ngIf="isEditingUsername" (click)="saveUsername()">Guardar</ion-button>
+        <ion-button *ngIf="isEditingUsername" (click)="cancelEditing()" color="danger">Cancelar</ion-button>
+      </div>
     </div>
+
   </div>
 </ion-content>

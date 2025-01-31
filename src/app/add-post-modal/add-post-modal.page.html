@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Crear Nuevo Post</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +13,7 @@
 
   <form [formGroup]="addPostForm" (ngSubmit)="addPost(addPostForm.value)">
     <div (click)="uploadPhone()">
-      <img [src]="post_image ? post_image : 'assets/images/place_holder.jpeg'" />
+      <img [src]="post_image ? post_image : 'assets/images/imagenguardar.jpg'" />
       <p *ngIf="!post_image">Haz click para subir una imagen</p>
     </div>
 

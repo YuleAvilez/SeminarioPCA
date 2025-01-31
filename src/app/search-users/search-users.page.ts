@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Storage } from '@ionic/storage-angular';
+import { ToastController } from '@ionic/angular';
+
+
 @Component({
   selector: 'app-search-users',
   templateUrl: './search-users.page.html',
@@ -16,11 +19,22 @@ export class SearchUsersPage implements OnInit {
   current_user: any;
   constructor(
     private userService: UserService,
-    private storage: Storage
+    private storage: Storage,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
     this.loadUsers();
+  }
+
+  async showToast(message: string, color: string = 'primary') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      color: color
+    });
+    toast.present();
   }
 
   async loadUsers(event?: any){
@@ -65,7 +79,7 @@ export class SearchUsersPage implements OnInit {
     const user_id = this.current_user.id;
     this.userService.followUser(user_id, followee_id).then(
       (data: any) => {
-        console.log(data);
+        this.showToast("Has seguido a este usuario", "success");
         this.users = this.users.map((user: any) => {
           if (user.id == followee_id){
             return {
@@ -82,8 +96,25 @@ export class SearchUsersPage implements OnInit {
       });
   }
 
-  unfollow(user_id: any){
-    console.log('unfollow', user_id);
+  unfollow(followee_id: any){
+    const user_id = this.current_user.id;
+    this.userService.unFollow(user_id, followee_id).then(
+      (data: any) => {
+        this.showToast("Has dejado de seguir a este usuario", "warning");
+        this.users = this.users.map((user: any) => {
+          if (user.id == followee_id){
+            return {
+              ...user,
+              is_following: false
+            }
+          }
+          return user;
+        });
+      }
+    ).catch(
+      (error) => {
+        console.log(error);
+      });
   }
 
   toggleFollow(user: any){

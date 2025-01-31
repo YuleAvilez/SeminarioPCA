@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage-angular';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+
 defineCustomElements(window);
 @Component({
   selector: 'app-account',
@@ -17,12 +19,17 @@ export class AccountPage implements OnInit {
     email: '',
     image: '',
     followees: [],
-    followers: []
+    followers: [],
+    
   };
+  
+  isEditingUsername: boolean = false;  // Bandera para controlar la edición
+  newUsername: string = '';
   constructor(
     private userService: UserService,
     private storage: Storage,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private toastController: ToastController
   ) { }
 
   async ngOnInit() {
@@ -91,5 +98,49 @@ export class AccountPage implements OnInit {
     });
     await alert.present();
   }
+
+  async showToast(message: string, color: string = 'primary') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      color: color
+    });
+    toast.present();
+  }
+  
+    startEditing() {
+      this.isEditingUsername = true;
+      this.newUsername = this.user_data.username;
+    }
+  
+    async saveUsername() {
+      if (!this.user_data.id) {
+        this.showToast("Error: El ID del usuario no está definido.", "danger");
+        return;
+      }
+    
+      if (this.newUsername.trim() !== "") {
+        this.user_data.username = this.newUsername;
+        this.isEditingUsername = false;
+    
+        try {
+          const updatedData = { id: this.user_data.id, username: this.newUsername };
+          await this.userService.updateUser(updatedData);
+          
+          await this.storage.set('user', this.user_data);
+    
+          this.showToast("Nombre de usuario actualizado correctamente.", "success");
+        } catch (error) {
+          this.showToast("Error al actualizar el nombre de usuario.", "danger");
+        }
+      }
+    }
+    
+    
+  
+    cancelEditing() {
+      this.isEditingUsername = false;
+    }
 
 }

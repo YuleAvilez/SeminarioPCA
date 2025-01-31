@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { PostService } from '../services/post.service';
 import { Storage } from '@ionic/storage-angular';
 import { ModalController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+
 defineCustomElements(window);
 @Component({
   selector: 'app-add-post-modal',
@@ -20,7 +22,8 @@ export class AddPostModalPage implements OnInit {
     private formBuilder: FormBuilder,
     private postService: PostService,
     private storage: Storage,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private toastController: ToastController
   ) { 
     this.addPostForm = this.formBuilder.group({
       description: new FormControl('', Validators.required),
@@ -44,6 +47,17 @@ export class AddPostModalPage implements OnInit {
     });
   }
 
+  
+  async showToast(message: string, color: string = 'primary') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      color: color
+    });
+    toast.present();
+  }
+
   async addPost(post_data: any){
     console.log('Add Post');
     console.log(post_data);
@@ -58,7 +72,7 @@ export class AddPostModalPage implements OnInit {
     console.log(post_param, 'post para enviar');
     this.postService.createPost(post_param).then(
       (data: any) => {
-        console.log(data, 'post creado');
+        this.showToast("post creado correctamente", "success");
         data.user = {
           id: user.id,
           name: user.name,
@@ -73,6 +87,10 @@ export class AddPostModalPage implements OnInit {
         console.log(error, 'error');
       }
     );
+  }
+
+  closeModal() {
+    this.modalController.dismiss(); 
   }
 
 }
