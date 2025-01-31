@@ -23,7 +23,7 @@ export class MenuPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.menu.close(); // Asegura que el menú esté cerrado al iniciar
+    this.menu.close(); 
   }
   log_out(){
     this.storage.remove("isUserloggeIn")

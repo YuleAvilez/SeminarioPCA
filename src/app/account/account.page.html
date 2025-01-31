@@ -37,10 +37,16 @@
       
       <p><strong>Seguidores:</strong> {{ user_data.followers.length }}</p>
       <p><strong>Siguiendo:</strong> {{ user_data.followees.length }}</p>
+
+      
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="startEditing()">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
       
       <!-- Botones de Editar/Guardar -->
       <div class="edit-buttons">
-        <ion-button *ngIf="!isEditingUsername" (click)="startEditing()">Editar Usuario</ion-button>
         <ion-button *ngIf="isEditingUsername" (click)="saveUsername()">Guardar</ion-button>
         <ion-button *ngIf="isEditingUsername" (click)="cancelEditing()" color="danger">Cancelar</ion-button>
       </div>

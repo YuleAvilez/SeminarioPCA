@@ -3,6 +3,8 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../services/auth.service';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -27,7 +29,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private navCrtl: NavController,
-    private storage: Storage
+    private storage: Storage,
+    private toastController: ToastController
   ) { 
     this.loginForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
@@ -41,6 +44,18 @@ export class LoginPage implements OnInit {
     })
   }
 
+  
+  async showToast(message: string, color: string = 'primary') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      color: color
+    });
+    toast.present();
+  }
+
+
   ngOnInit() {
   }
   loginUser(credentials: any){
@@ -52,7 +67,7 @@ export class LoginPage implements OnInit {
       this.navCrtl.navigateForward('/menu/home');
     }).catch(err =>{
       console.log(err);
-      this.errorMessage = err;
+      this.showToast("Usuario o Contraseña incorrectos", "danger")
     });
   }
 }
