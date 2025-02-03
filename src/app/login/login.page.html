@@ -17,7 +17,7 @@
         formControlName="email">
       </ion-input>
     </ion-item>
-    <!-- Errores de Email -->
+
     <div class="error-messages">
       <ng-container *ngFor="let error of FormErros.email">
         <ion-label color="danger" *ngIf="(loginForm.get('email')?.hasError(error.type) && loginForm.get('email')?.dirty)">
@@ -26,7 +26,6 @@
       </ng-container>
     </div>
 
-    <!-- Password Input -->
     <ion-item class="horror-input">
       <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
       <ion-input
@@ -37,7 +36,7 @@
         formControlName="password">
       </ion-input>
     </ion-item>
-    <!-- Errores de Password -->
+
     <div class="error-messages">
       <ng-container *ngFor="let error of FormErros.password">
         <ion-label color="danger" *ngIf="(loginForm.get('password')?.hasError(error.type) && loginForm.get('password')?.dirty)">
@@ -51,7 +50,7 @@
     </ion-button>
   </form>
 
-  <p>{{errorMessage}}</p>
+  <!-- <p>{{errorMessage}}</p> -->
 
   <div class="additional-links">
     <a href="/register" class="registro">REGISTRO</a>
